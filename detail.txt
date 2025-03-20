@@ -1,0 +1,4 @@
+Use the db first approach (create db and model using entity framework)
+do not create automatic controller write it manually
+
+create GetData.cshtml file as empty

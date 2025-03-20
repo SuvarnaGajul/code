@@ -1,0 +1,51 @@
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div>
+    <button onclick="btnclk()" type="button">Show</button>
+</div>
+<div>
+    <h2>Student</h2>
+    <table id="student">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Class</th>
+            </tr>
+        
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script>
+    function btnclk() {
+        $.ajax({
+            url: "@Url.Action("GetData","Student")",
+            method: "GET",
+            success: function (data)
+            {
+                console.log(data);
+
+                $("#student tboday").empty();
+
+                data.forEach(function (c) {
+                    var row = "<tr>";
+                    row += "<td>" + c.Id + "</td>";
+                    row += "<td>" + c.Name + "</td>";
+                    row += "<td>" + c.cls + "</td>";
+                    row += "</tr>";
+
+                    $("#student tbody").append(row);
+                })
+            },
+            error: function (err) {
+                console.error(err);
+            }
+        })
+    }
+</script>
